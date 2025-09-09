@@ -1,0 +1,283 @@
+{
+    "config_name": "Astromech Droid w/ Buzzer",
+    "config_type": "custom",
+    "design_id": "00000000000001549117",
+    "file_name": "r2d2buzzer",
+    "receiver_1": {
+        "BUZZER1": {
+            "data": [
+                 {
+                    "effect": 1,
+                    "device": "BUZZER1",
+                    "volume": 0,
+                    "repeat_time": 0,
+                    "code": "buzzer = BuzzerController('BUZZER1')\nbuzzer.set_volume(0)\nbuzzer.stop()",
+                    "effect_name": "Buzzer Off"
+                },
+                 {
+                    "effect": 2,
+                    "effect_name": "Buzzer On (1000hz/50% vol)",
+                    "device": "BUZZER1",
+                    "volume": 50,
+                    "repeat_time": 0,
+                    "code": "buzzer = BuzzerController('BUZZER1', freq=1000, duty=512)\nbuzzer.set_freq(1500)\nbuzzer.set_duty(1023)\nbuzzer.set_volume(50)\nbuzzer.stop()"
+                }
+            ],
+            "en": true,
+            "name": "Buzzer"
+        },
+        "BUZZER2": {},
+        "CODE": {
+            "data": [],
+            "en": true,
+            "name": "CODE"
+        },
+        "LED1": {
+            "data": [],
+            "en": false,
+            "name": "LED1"
+        },
+        "LED2": {
+            "data": [
+                {
+                    "RGB": "0xfd070b",
+                    "device": "LED2",
+                    "device_name": "Dome Lights",
+                    "effect": 3,
+                    "effect_name": "Front Light Blinking Red",
+                    "mode": "blink",
+                    "repeat_times": 255,
+                    "sequence_number": 1,
+                    "time": 2
+                },
+                {
+                    "RGB": "0xecf9ff",
+                    "device": "LED2",
+                    "device_name": "Dome Lights",
+                    "effect": 1,
+                    "effect_name": "All Lights",
+                    "mode": "steady",
+                    "sequence_number": 15
+                }
+            ],
+            "en": true,
+            "name": "Dome Lights"
+        },
+        "MOTOR1": {
+            "advance_motor_config": {
+                "ACC": 1.45,
+                "HVD": 1,
+                "HVZ": 40,
+                "LVZ": 60,
+                "en": true
+            },
+            "bias": 0,
+            "en": true,
+            "max_value": 100,
+            "min_value": 100,
+            "name": "Left Leg"
+        },
+        "MOTOR2": {
+            "advance_motor_config": {
+                "ACC": 1.45,
+                "HVD": 1,
+                "HVZ": 40,
+                "LVZ": 60,
+                "en": true
+            },
+            "bias": 0,
+            "en": true,
+            "max_value": 100,
+            "min_value": 100,
+            "name": "Right Leg"
+        },
+        "PWM1": {
+            "en": true,
+            "initial_value": 90,
+            "max_value": 180,
+            "min_value": 0,
+            "name": "Dome Rotation",
+            "speed": 100,
+            "type": "angle"
+        },
+        "PWM2": {},
+        "PWM3": {},
+        "PWM4": {}
+    },
+    "receiver_2": {
+        "BUZZER1": {},
+        "BUZZER2": {},
+        "CODE": {},
+        "LED1": {},
+        "LED2": {},
+        "MOTOR1": {},
+        "MOTOR2": {},
+        "PWM1": {},
+        "PWM2": {},
+        "PWM3": {},
+        "PWM4": {}
+    },
+    "region": "US",
+    "sender": {
+        "channels": [
+            {
+                "controls": [],
+                "data": {
+                    "deadzone": 500,
+                    "mid_value": 2200
+                },
+                "device": "three_way_switch",
+                "event": [],
+                "name": "L Shoulder 3-Pos"
+            },
+            {
+                "controls": [],
+                "data": {
+                    "channel": "x",
+                    "deadzone": 300,
+                    "mid_value": 2048
+                },
+                "device": "joystick",
+                "event": [
+                    {
+                        "actuator": "LED2",
+                        "receiver": 1,
+                        "set_value": [
+                            1
+                        ],
+                        "type": "eq_mid"
+                    }
+                ],
+                "name": "L Stick"
+            },
+            {
+                "controls": [
+                    {
+                        "actuator": "MOTOR1",
+                        "direction": "negative",
+                        "receiver": 1
+                    }
+                ],
+                "data": {
+                    "channel": "y",
+                    "deadzone": 200,
+                    "mid_value": 2048
+                },
+                "device": "joystick",
+                "event": [],
+                "name": "L Stick"
+            },
+            {
+                "controls": [
+                    {
+                        "actuator": "PWM1",
+                        "direction": "positive",
+                        "receiver": 1
+                    }
+                ],
+                "data": {
+                    "channel": "y",
+                    "deadzone": 200,
+                    "mid_value": 2048
+                },
+                "device": "joystick_s",
+                "event": [
+                    {
+                        "actuator": "LED2",
+                        "receiver": 1,
+                        "set_value": [
+                            3
+                        ],
+                        "type": "gt_mid"
+                    },
+                    {
+                        "actuator": "LED2",
+                        "receiver": 1,
+                        "set_value": [
+                            3
+                        ],
+                        "type": "lt_mid"
+                    },
+                    {
+                        "actuator": "LED2",
+                        "receiver": 1,
+                        "set_value": [
+                            3
+                        ],
+                        "type": "eq_mid"
+                    }
+                ],
+                "name": "Center Stick"
+            },
+            {
+                "controls": [],
+                "data": {
+                    "channel": "x",
+                    "deadzone": 200,
+                    "mid_value": 2048
+                },
+                "device": "joystick",
+                "event": [],
+                "name": "R Stick"
+            },
+            {
+                "controls": [
+                    {
+                        "actuator": "MOTOR2",
+                        "direction": "positive",
+                        "receiver": 1
+                    }
+                ],
+                "data": {
+                    "channel": "y",
+                    "deadzone": 200,
+                    "mid_value": 2048
+                },
+                "device": "joystick",
+                "event": [],
+                "name": "R Stick"
+            },
+            {
+                "controls": [],
+                "data": {
+                    "channel": "key1"
+                },
+                "device": "button",
+                "event": [
+                    {
+                        "actuator": "BUZZER1",
+                        "receiver": 1,
+                        "set_value": [
+                            2
+                        ],
+                        "type": "down"
+                    },{
+                        "actuator": "BUZZER1",
+                        "receiver": 1,
+                        "set_value": [
+                            1
+                        ],
+                        "type": "release"
+                    }
+                ],
+                "name": "R Shoulder Button"
+            },
+            {},
+            {},
+            {}
+        ]
+    },
+    "switches": {
+        "list": [
+            {
+                "name": "Droid",
+                "state": "on"
+            },
+            {
+                "state": "off"
+            }
+        ]
+    },
+    "update_time": "6/23/2025, 9:51:37 AM",
+    "version": "1.6.22"
+}
